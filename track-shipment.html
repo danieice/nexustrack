@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Shipment - Nexustrack</title>
+    <meta name="description" content="Track your shipment with real-time updates across Africa">
+    <link rel="stylesheet" href="assets/stylesheet/dashboard-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-section">
+                    <img src="assets/logo.png" alt="Nexustrack Logo" class="logo">
+                    <span class="logo-text">Nexustrack</span>
+                </div>
+            </div>
+            
+            <nav class="header-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+                <a href="track-shipment.html" class="nav-item active">
+                    <i class="fas fa-search"></i>
+                    Track
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="contact.html" class="nav-item">
+                    <i class="fas fa-phone"></i>
+                    Support
+                </a>
+            </nav>
+            
+            <div class="header-right">
+                <button class="notification-btn" id="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </button>
+                <div class="user-menu">
+                    <button class="user-btn" id="user-menu-btn">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=8B5CF6&color=fff" alt="User Avatar" class="user-avatar">
+                        <span class="user-name">John Doe</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a>
+                        <a href="dashboard.html" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Log Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Track Shipment Section -->
+        <section class="track-section">
+            <div class="container">
+                <div class="track-header">
+                    <h1 class="page-title">Track Your Shipment</h1>
+                    <p class="page-subtitle">Enter your tracking number to get real-time updates</p>
+                </div>
+
+                <div class="track-form-card">
+                    <form class="track-form" id="track-form">
+                        <div class="form-group">
+                            <label for="tracking-number">Tracking Number</label>
+                            <input 
+                                type="text" 
+                                id="tracking-number" 
+                                name="trackingNumber" 
+                                placeholder="Enter tracking number (e.g., TRK123456789)" 
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="courier-select">Courier (Optional)</label>
+                            <select id="courier-select" name="courier">
+                                <option value="">Auto-detect courier</option>
+                                <option value="dhl">DHL Express</option>
+                                <option value="fedex">FedEx</option>
+                                <option value="ups">UPS</option>
+                                <option value="tnt">TNT</option>
+                                <option value="aramex">Aramex</option>
+                                <option value="ems">EMS Post</option>
+                                <option value="gig">GIG Logistics</option>
+                                <option value="jumia">Jumia Express</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-search"></i>
+                            Track Shipment
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Tracking Results -->
+                <div class="tracking-results" id="tracking-results" style="display: none;">
+                    <div class="results-card">
+                        <div class="shipment-header">
+                            <div class="shipment-info">
+                                <h3 class="shipment-id" id="result-tracking-number"></h3>
+                                <div class="courier-badge" id="result-courier">
+                                    <i class="fas fa-truck"></i>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="shipment-status" id="result-status">
+                                <span class="status-badge"></span>
+                            </div>
+                        </div>
+
+                        <div class="shipment-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="detail-content">
+                                    <span class="detail-label">Current Location</span>
+                                    <span class="detail-value" id="result-location">Loading...</span>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <div class="detail-content">
+                                    <span class="detail-label">Last Updated</span>
+                                    <span class="detail-value" id="result-updated">Loading...</span>
+                                </div>
+                            </div>
+
+                            <div class="detail-item">
+                                <i class="fas fa-calendar"></i>
+                                <div class="detail-content">
+                                    <span class="detail-label">Estimated Delivery</span>
+                                    <span class="detail-value" id="result-delivery">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-actions">
+                            <button class="btn btn-primary" id="view-details-btn">
+                                <i class="fas fa-eye"></i>
+                                <a href="shipment-details.html" class="btn-primary">View Full Details</a>
+                            </button>
+                            <button class="btn btn-outline" id="track-another-btn">
+                                <i class="fas fa-plus"></i>
+                                Track Another
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error State -->
+                <div class="error-state" id="error-state" style="display: none;">
+                    <div class="error-card">
+                        <div class="error-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="error-title">Tracking Number Not Found</h3>
+                        <p class="error-message" id="error-message">
+                            We couldn't find any shipment with this tracking number. Please check the number and try again.
+                        </p>
+                        <button class="btn btn-primary" id="try-again-btn">
+                            <i class="fas fa-redo"></i>
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sample Tracking Numbers -->
+                <div class="sample-numbers">
+                    <h3>Try these sample tracking numbers:</h3>
+                    <div class="sample-list">
+                        <button class="sample-btn" data-tracking="TRK123456789">TRK123456789</button>
+                        <button class="sample-btn" data-tracking="DHL987654321">DHL987654321</button>
+                        <button class="sample-btn" data-tracking="FDX456789123">FDX456789123</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Background Elements -->
+    <div class="dashboard-background">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+    </div>
+
+    <script src="assets/javascript/dashboard-script.js"></script>
+    <script src="assets/javascript/track-script.js"></script>
+</body>
+</html>

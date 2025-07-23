@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipment Details - Nexustrack</title>
+    <meta name="description" content="Detailed tracking information for your shipment">
+    <link rel="stylesheet" href="assets/stylesheet/dashboard-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-section">
+                    <img src="assets/logo.png" alt="Nexustrack Logo" class="logo">
+                    <span class="logo-text">Nexustrack</span>
+                </div>
+                <button class="back-btn" onclick="window.location.href='dashboard.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+            
+            <nav class="header-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+                <a href="track-shipment.html" class="nav-item">
+                    <i class="fas fa-search"></i>
+                    Track
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="contact.html" class="nav-item">
+                    <i class="fas fa-phone"></i>
+                    Support
+                </a>
+            </nav>
+            
+            <div class="header-right">
+                <button class="notification-btn" id="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </button>
+                <div class="user-menu">
+                    <button class="user-btn" id="user-menu-btn">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=8B5CF6&color=fff" alt="User Avatar" class="user-avatar">
+                        <span class="user-name">John Doe</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a>
+                        <a href="dashboard.html" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Log Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <section class="details-section">
+            <div class="container">
+                <!-- Shipment Overview -->
+                <div class="details-header">
+                    <div class="details-title-section">
+                        <h1 class="page-title" id="shipment-id">TRK123456789</h1>
+                        <div class="status-info">
+                            <span class="status-badge in-transit" id="shipment-status">In Transit</span>
+                            <span class="courier-info" id="courier-info">
+                                <i class="fas fa-truck"></i>
+                                DHL Express
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="details-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">Estimated Delivery</span>
+                            <span class="summary-value" id="estimated-delivery">Dec 28, 2024</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Days in Transit</span>
+                            <span class="summary-value" id="days-transit">3 days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tracking Timeline -->
+                <div class="timeline-card">
+                    <h2 class="card-title">
+                        <i class="fas fa-route"></i>
+                        Shipment Timeline
+                    </h2>
+                    
+                    <div class="timeline" id="shipment-timeline">
+                        <!-- Timeline items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Shipment Information -->
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3 class="info-title">
+                            <i class="fas fa-box"></i>
+                            Shipment Information
+                        </h3>
+                        <div class="info-content">
+                            <div class="info-row">
+                                <span class="info-label">Tracking Number</span>
+                                <span class="info-value" id="info-tracking">TRK123456789</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Service Type</span>
+                                <span class="info-value" id="info-service">Express Delivery</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Weight</span>
+                                <span class="info-value" id="info-weight">2.5 kg</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Package Type</span>
+                                <span class="info-value" id="info-package">Document</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3 class="info-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Delivery Information
+                        </h3>
+                        <div class="info-content">
+                            <div class="info-row">
+                                <span class="info-label">From</span>
+                                <span class="info-value" id="info-origin">Lagos, Nigeria</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">To</span>
+                                <span class="info-value" id="info-destination">Accra, Ghana</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Recipient</span>
+                                <span class="info-value" id="info-recipient">John Doe</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Contact</span>
+                                <span class="info-value" id="info-contact">+233 XX XXX XXXX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="details-actions">
+                    <button class="btn btn-outline" onclick="window.location.href='dashboard.html'">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Dashboard
+                    </button>
+                    <button class="btn btn-primary" id="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh Status
+                    </button>
+                    <button class="btn btn-secondary" id="share-btn">
+                        <i class="fas fa-share"></i>
+                        Share Tracking
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Background Elements -->
+    <div class="dashboard-background">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+    </div>
+
+    <script src="assets/javascript/dashboard-script.js"></script>
+    <script src="assets/javascript/shipment-details-script.js"></script>
+</body>
+</html>

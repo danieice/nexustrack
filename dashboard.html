@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Nexustrack</title>
+    <meta name="description" content="Manage and track all your shipments from your Nexustrack dashboard">
+    <link rel="stylesheet" href="assets/stylesheet/dashboard-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-section">
+                    <img src="assets/logo.png" alt="Nexustrack Logo" class="logo">
+                    <span class="logo-text">Nexustrack</span>
+                </div>
+            </div>
+            
+            <nav class="header-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+                <a href="track-shipment.html" class="nav-item">
+                    <i class="fas fa-search"></i>
+                    Track
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="contact.html" class="nav-item">
+                    <i class="fas fa-phone"></i>
+                    Support
+                </a>
+            </nav>
+            
+            <div class="header-right">
+                <button class="notification-btn" id="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </button>
+                <div class="user-menu">
+                    <button class="user-btn" id="user-menu-btn">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=8B5CF6&color=fff" alt="User Avatar" class="user-avatar">
+                        <span class="user-name">John Doe</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a>
+                        <a href="index.html" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Log Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="container">
+                <div class="welcome-content">
+                    <h1 class="welcome-title">Welcome back, John!</h1>
+                    <p class="welcome-subtitle">Here's what's happening with your shipments today</p>
+                </div>
+                <button class="btn btn-primary track-new-btn" onclick="window.location.href='track-shipment.html'">
+                    <i class="fas fa-plus"></i>
+                    Track New Shipment
+                </button>
+            </div>
+        </section>
+
+        <!-- Summary Cards -->
+        <section class="summary-section">
+            <div class="container">
+                <div class="summary-grid">
+                    <div class="summary-card total">
+                        <div class="card-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-number" id="total-shipments">24</h3>
+                            <p class="card-label">Total Shipments</p>
+                        </div>
+                        <div class="card-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12%</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-card in-transit">
+                        <div class="card-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-number" id="in-transit">8</h3>
+                            <p class="card-label">In Transit</p>
+                        </div>
+                        <div class="card-trend">
+                            <i class="fas fa-clock"></i>
+                            <span>Active</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-card delivered">
+                        <div class="card-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-number" id="delivered">14</h3>
+                            <p class="card-label">Delivered</p>
+                        </div>
+                        <div class="card-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+5</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-card delayed">
+                        <div class="card-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-number" id="delayed">2</h3>
+                            <p class="card-label">Delayed</p>
+                        </div>
+                        <div class="card-trend down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>-1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Shipments -->
+        <section class="shipments-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Shipments</h2>
+                    <button class="btn btn-outline view-all-btn">
+                        View All
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="shipments-list" id="shipments-list">
+                    <!-- Shipments will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions-section">
+            <div class="container">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="actions-grid">
+                    <button class="action-card" onclick="window.location.href='track-shipment.html'">
+                        <div class="action-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="action-content">
+                            <h3>Track Shipment</h3>
+                            <p>Search by tracking number</p>
+                        </div>
+                    </button>
+
+                    <button class="action-card" onclick="window.location.href='contact.html'">
+                        <div class="action-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="action-content">
+                            <h3>Get Support</h3>
+                            <p>Contact our team</p>
+                        </div>
+                    </button>
+
+                    <button class="action-card" onclick="window.location.href='profile.html'">
+                        <div class="action-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="action-content">
+                            <h3>Settings</h3>
+                            <p>Manage your account</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Background Elements -->
+    <div class="dashboard-background">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+    </div>
+
+    <script src="assets/javascript/dashboard-script.js"></script>
+</body>
+</html>
